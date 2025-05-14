@@ -2,12 +2,12 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Transaction, Task
+from .models import Transaction, Task, FriendPhone, BObject
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 from django.utils import timezone
-from .serializers import UserSerializer, TransactionSerializer, TaskSerializer
+from .serializers import UserSerializer, TransactionSerializer, TaskSerializer, FriendPhoneSerializer, BObjectSerializer
 from datetime import datetime
 import pandas as pd
 from dateutil.relativedelta import relativedelta
@@ -101,6 +101,7 @@ def post_transaction(request):
         'category': request.data.get('category', ''),
         'amount': request.data.get('amount'),
         'currency': request.data.get('currency'),
+        'title': request.data.get('title'),
     }
     serializer = TransactionSerializer(data = validate)
     
@@ -125,6 +126,7 @@ def post_transaction(request):
                 time = cleaned_time,
                 description = request.data['description'],
                 currency = request.data['currency'],
+                title = request.data['title'],
             )
         return Response({"message": "Transaction added correctly"}, status=status.HTTP_201_CREATED)
     except Exception as e:
@@ -320,3 +322,105 @@ def delete_task(request):
     except:
         return Response('something went wrong with updating task', status=status.HTTP_400_BAD_REQUEST)        
     
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def post_friendphone(request):
+
+    try:
+        FriendPhone.objects.create(**request.data,user=request.user)
+        return Response('zer gud epta',status=status.HTTP_201_CREATED)
+    except:
+        return Response('1bad request,get sure your data is valid',status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_friendlist(request):
+    filters = {'user':request.user}
+    try:
+        task = FriendPhone.objects.filter(**filters)
+        serializer = FriendPhoneSerializer(task, many=True)
+        return Response(serializer.data)
+    except:
+        return Response('cheto ne furichit',status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def update_phonefriend(request):
+    try:
+        filters = {
+            'id': request.data['id'],
+            'user_id': request.user
+        }
+        
+        phonefriend_to_update = FriendPhone.objects.filter(**filters)
+        phonefriend_to_update.update(**request.data)
+        return Response(status=status.HTTP_200_OK)
+    except:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def delete_phonefriend(request):
+    
+    try:
+        friend_id = request.data.get('id')
+        friend_phone = FriendPhone.objects.get(id=friend_id)
+        friend_phone.delete()
+        return Response(status=status.HTTP_200_OK)
+    except:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+    
+#Objects
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def post_BObject(request):
+
+    try:
+        BObject.objects.create(**request.data,user=request.user)
+        return Response('zer gud epta',status=status.HTTP_201_CREATED)
+    except:
+        return Response('1bad request,get sure your data is valid',status=status.HTTP_400_BAD_REQUEST)
+    
+    
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_BObject(request):
+    filters = {'user':request.user}
+    # try:
+    task = BObject.objects.filter(**filters)
+    serializer = BObjectSerializer(task, many=True)
+    return Response(serializer.data)
+    # except:
+        # return Response('cheto ne furichit',status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def update_BObject(request):
+
+    try:    
+        object = BObject.objects.get(id=request.data['id'],user_id=request.user)
+        object.first_price = object.second_price
+        object.second_price = request.data['second_price']
+        object.first_date = object.second_date
+        object.second_date = timezone.now()
+        object.save()
+        return Response(status=status.HTTP_200_OK)    
+    except:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def delete_BObject(request):
+    
+    try:
+        friend_id = request.data.get('id')
+        bobject = BObject.objects.get(id=friend_id)
+        bobject.delete()
+        return Response(status=status.HTTP_200_OK)
+    except:
+        return Response(status=status.HTTP_400_BAD_REQUEST)

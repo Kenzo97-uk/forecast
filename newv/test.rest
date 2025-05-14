@@ -1,7 +1,7 @@
 POST http://127.0.0.1:8000/users/signup
 Content-Type: application/json
 
-{ "username": "sasssas", "password": "sasaasas", "email": "ses99049@zslsz.com"}
+{ "username": "dfgdfgd", "password": "sgfdgdfd", "email": "m.tkhorevskyi@gmail.com"}
 
 ###
 
@@ -12,7 +12,7 @@ Content-Type: application/json
 
 ###
 
-GET http://127.0.0.1:8000/users/test_token
++GET http://127.0.0.1:8000/users/test_token
 Content-Type: application/json
 Authorization: Token c55d9202dda19f62f656ab8016a613567098fd06
 
@@ -20,9 +20,9 @@ Authorization: Token c55d9202dda19f62f656ab8016a613567098fd06
 
 POST http://127.0.0.1:8000/users/post_transaction
 Content-Type: application/json
-Authorization: Bearer 0fdfb8e022c1c2533b2f30c97f225e2f903f9754
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAzMjU2MzkyLCJpYXQiOjE3MDI5MTA3OTIsImp0aSI6IjBmNDA4ZjVlMzMxODRhNTE5ZmE0NTk0MDEyNmNlYzBjIiwidXNlcl9pZCI6M30.u7BkRVVGtPzlHmAZgp6zTUb9xcemCpKxnoBeCPNilHo
 
-{"category": "entertainment ", "amount": "-1000","time":"2023-11-26", "description": "", "currency": "zl"}
+{"title": "fdafadf", "category": "entertainment ", "amount": "-1000","time":"2023-11-26", "description": "", "currency": "zl"}
 ###
 
 GET http://127.0.0.1:8000/users/get_transaction
@@ -104,8 +104,8 @@ POST http://127.0.0.1:8000/api/token/
 Content-Type: application/json
 
 {
-    "username": "testik1",
-    "password": "test1k"
+    "username": "dfgdfgd",
+    "password": "sgfdgdfd"
 }
 
 ###
@@ -120,3 +120,65 @@ Content-Type: application/json
 GET http://127.0.0.1:8000/users/get_task/
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAxMTgxODQ4LCJpYXQiOjE3MDA4MzYyNDgsImp0aSI6IjM5ODdlNmIyOTQ1MzQwYTI4MmVmNDk5MTAzNWRlYTVmIiwidXNlcl9pZCI6Mn0.V6HS9cxDEc4xEEM3p2NablQHb55Vk8g1Xft1AapkeZw
+
+###
+
+POST http://127.0.0.1:8000/users/create_phonefriend/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA2OTAyMTAxLCJpYXQiOjE3MDY1NTY1MDEsImp0aSI6Ijc5ZGVmZGNjZGRmMDRjMGVhNjRjOGFiZTAxNGRjM2FjIiwidXNlcl9pZCI6M30.4kLdVfkjU3JRWtYHPKu5v7Jm5t8fZUsNmR4ZnqVvHaI
+
+{"fname":"aaaaaaaaaaaaaaaaad","fsurname":"dadad"}
+
+###
+
+GET http://127.0.0.1:8000/users/get_phonefriend/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA2OTY0NjU5LCJpYXQiOjE3MDY2MTkwNTksImp0aSI6ImI1ZDQ1ZTcyNTI3ODRiOTE5MTliNTc1ZWE5NTJiYzVmIiwidXNlcl9pZCI6M30._wdorEFJO7RCnG3Sbb_NDg2JM_I9z0wGfHp_5ORXvO0
+
+
+###
+
+POST http://127.0.0.1:8000/users/update_phonefriend/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAzODE5Njk5LCJpYXQiOjE3MDM0NzQwOTksImp0aSI6IjRmOGE3YWQ2OWU3ZDQwYTQ4ZDdhOWM2YjRlODA2NjRhIiwidXNlcl9pZCI6Mn0.6oEv89CNW8hBAR8YwgkNhVSdCGqEaNodbv0WqrpcA9A
+
+{"id":"6","fmail":"soska228@gmail.com","fbirthday":"2021-05-06"}
+
+###
+
+POST http://127.0.0.1:8000/users/delete_phonefriend/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAzODE5Njk5LCJpYXQiOjE3MDM0NzQwOTksImp0aSI6IjRmOGE3YWQ2OWU3ZDQwYTQ4ZDdhOWM2YjRlODA2NjRhIiwidXNlcl9pZCI6Mn0.6oEv89CNW8hBAR8YwgkNhVSdCGqEaNodbv0WqrpcA9A
+
+{"id":"6"}
+
+###
+
+POST http://127.0.0.1:8000/users/create_bobject/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA3MDQ0NDE0LCJpYXQiOjE3MDY2OTg4MTQsImp0aSI6IjRjZDRmNmNiZDlkMDQ1MWZiZjVkNmU5MzBmMTNkNzRmIiwidXNlcl9pZCI6M30.rSOFUnPq8l0bdMycSxpvszveM6s0YE80jmCr-pBvat4
+
+{"object_name":"susasd","first_price":"228"}
+
+###
+
+GET http://127.0.0.1:8000/users/get_bobject/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA3MDQ0NDE0LCJpYXQiOjE3MDY2OTg4MTQsImp0aSI6IjRjZDRmNmNiZDlkMDQ1MWZiZjVkNmU5MzBmMTNkNzRmIiwidXNlcl9pZCI6M30.rSOFUnPq8l0bdMycSxpvszveM6s0YE80jmCr-pBvat4
+
+
+###
+
+POST http://127.0.0.1:8000/users/update_bobject/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA3MDQ0NDE0LCJpYXQiOjE3MDY2OTg4MTQsImp0aSI6IjRjZDRmNmNiZDlkMDQ1MWZiZjVkNmU5MzBmMTNkNzRmIiwidXNlcl9pZCI6M30.rSOFUnPq8l0bdMycSxpvszveM6s0YE80jmCr-pBvat4
+
+{"id":"3","second_price":"280"}
+
+###
+
+POST http://127.0.0.1:8000/users/delete_bobject/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA0MzE2ODEyLCJpYXQiOjE3MDM5NzEyMTIsImp0aSI6ImM2YjExNWQyYmY2ZDQwYjE5ZDY5Y2VjZGFmOTRiNjczIiwidXNlcl9pZCI6Mn0.RrT_BUqIndbcfJ0mUhcRKwbe-LBOFylWOyY_67JbAiA
+
+{"id":"3"}

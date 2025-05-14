@@ -16,6 +16,7 @@ class Transaction(models.Model):
                         ('savings', 'Savings'),
                         ('others', 'Others'),)"""
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    title = models.CharField(max_length = 25, default = '') 
     category = models.CharField(max_length=25, default='others')
     amount = models.IntegerField(validators=[MaxValueValidator(limit_value=9999999999)], default=0)
     time = models.DateTimeField(null=True, blank=True, default=timezone.now)
@@ -30,5 +31,22 @@ class Task(models.Model):
     complete = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     deadline = models.DateTimeField(blank=True)
+
+class FriendPhone(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE,null = True, blank = True)
+    fname = models.CharField(max_length=20)
+    fsurname = models.CharField(max_length=20)
+    fmail = models.EmailField(null=True,blank=True)
+    fbirthday = models.DateField(null=True,blank=True,default=timezone.now)
+    fdesc = models.CharField(max_length = 50)
     
+
+class BObject(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE,null = True, blank = True)
+    object_name = models.CharField(max_length=20)
+    object_desc = models.CharField(max_length=20)
+    first_price = models.FloatField(null=True,blank=True)
+    first_date = models.DateTimeField(null=True,blank=True)
+    second_price = models.FloatField(null=True,blank=True)
+    second_date = models.DateTimeField(null=True,blank=True,default=timezone.now)
     

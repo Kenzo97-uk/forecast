@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'pymysql',
     'users',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -50,11 +51,33 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'newv.urls'
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+]
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'newv/debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
 
 TEMPLATES = [
     {
@@ -131,7 +154,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-SECRET_KEY = ''
+SECRET_KEY = 'django-insecure-l3+lnajx88icbowq15npx=2a9(65h32ibyqmfzlru23m%90fqq'
 
 
 REST_FRAMEWORK = {
@@ -149,8 +172,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.mail.yahoo.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = '@yahoo.com'
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_USER = 'lilp1ka@yahoo.com'
+EMAIL_HOST_PASSWORD = 'ixpypbwertnhlrwg'
 
 
 from datetime import timedelta

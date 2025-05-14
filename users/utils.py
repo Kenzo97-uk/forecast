@@ -22,11 +22,12 @@ def send_confirmation_email(request, user):
 
 
 def send_verif_up_mail(request, user):
+    requsername = request.data['username']
     uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
     token = default_token_generator.make_token(user)
     confirmation_url = f"{BASE_URL}/users/mailconfirm/{uidb64}/{token}/"
     subject = 'Budget Predict Verify'    
-    message = f'Hi, {request.data['username']}, thanks for choosing our web-application. Please,confirm your email by following this link {confirmation_url} sda'
+    message = f'Hi, {requsername}, thanks for choosing our web-application. Please,confirm your email by following this link {confirmation_url} sda'
     email_from = settings.EMAIL_HOST_USER
     recipient_list = [request.data['email']]
     send_mail(subject,message,email_from,recipient_list)
